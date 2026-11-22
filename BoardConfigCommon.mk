@@ -109,7 +109,7 @@ TARGET_USES_VULKAN := true
 ## Kernel
 BOARD_KERNEL_IMAGE_NAME := Image
 TARGET_KERNEL_NO_GCC := true
-TARGET_KERNEL_SOURCE := kernel/samsung/exynos9820
+TARGET_KERNEL_SOURCE := kernel/samsung/r7
 
 ## Keymaster
 $(call soong_config_set,samsungVars,target_keymaster4_library,//vendor/samsung/exynos9820-common:libskeymaster4device)
