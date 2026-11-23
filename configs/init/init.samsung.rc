@@ -88,7 +88,6 @@ on post-fs
     mkdir /dev/fsdbg 0775 root system
 
 on post-fs-data
-    mark_post_data
 
     # System Parameter Upates
     chown system system /spu
