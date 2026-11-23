@@ -1,8 +1,5 @@
 ## Adoptable Storage
-ro.crypto.volume.options=aes-256-xts:aes-256-cts:v2
-
-## APK Verity
-ro.apk_verity.mode=2
+ro.crypto.volume.options=aes-256-xts
 
 ## Audio
 audio.offload.min.duration.secs=30
@@ -32,16 +29,8 @@ bluetooth.profile.sap.server.enabled=true
 dalvik.vm.dex2oat64.enabled=true
 dalvik.vm.lockprof.threshold=500
 
-## Eden
-log.tag.EDEN=INFO
-ro.vendor.eden.devices=CPU1_GPU1_NPU1
-ro.vendor.eden.npu.version.path=/sys/devices/platform/npu@17800000/version
-
 ## FRP
 ro.frp.pst=/dev/block/persistent
-
-## FUSE
-persist.sys.fuse.passthrough.enable=true
 
 ## Graphics
 debug.sf.auto_latch_unsignaled=0
@@ -61,15 +50,6 @@ ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 ro.surface_flinger.supports_background_blur=1
 ro.surface_flinger.use_color_management=true
 ro.vendor.ddk.set.afbc=1
-
-## Incremental FS
-ro.incremental.enable=true
-
-## Metadata Encryption
-ro.crypto.dm_default_key.options_format.version=2
-# Call deleteAllKeys if vold detects a factory reset
-ro.crypto.metadata_init_delete_all_keys.enabled=true
-ro.crypto.volume.metadata.method=dm-default-key
 
 ## Power HAL
 vendor.powerhal.disp.idle_support=false

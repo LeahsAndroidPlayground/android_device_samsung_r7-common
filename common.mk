@@ -123,7 +123,7 @@ PRODUCT_PACKAGES += \
 # init
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/init/init.exynos9810.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.exynos9810.rc \
-    $(COMMON_PATH)/configs/init/init.exynos9810.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.exynos9810.usb.rc \
+    $(COMMON_PATH)/configs/init/init.samsungexynos9810.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.samsungexynos9810.usb.rc \
     $(COMMON_PATH)/configs/init/init.samsung.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.samsung.rc \
     $(COMMON_PATH)/configs/init/init.stune.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.stune.rc \
     $(COMMON_PATH)/configs/init/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
@@ -138,7 +138,6 @@ PRODUCT_COPY_FILES += \
 # Kernel
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
-PRODUCT_ENABLE_UFFD_GC := true
 
 # Keylayout
 PRODUCT_COPY_FILES += \
