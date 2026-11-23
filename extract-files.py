@@ -19,7 +19,7 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
-    'device/samsung/exynos9820-common',
+    'device/samsung/exynos9810-common',
     'hardware/samsung',
     'hardware/samsung_slsi-linaro/graphics',
 ]
@@ -62,7 +62,7 @@ blob_fixups: blob_fixups_user_type = {
 }  # fmt: skip
 
 module = ExtractUtilsModule(
-    'exynos9820-common',
+    'exynos9810-common',
     'samsung',
     namespace_imports=namespace_imports,
     blob_fixups=blob_fixups,

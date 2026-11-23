@@ -85,3 +85,7 @@ ro.vendor.cscsupported=1
 
 ## Wi-Fi Direct
 wifi.direct.interface=p2p-dev-wlan0
+
+## SoC
+ro.soc.manufacturer=Samsung
+ro.soc.model=Exynos 9810

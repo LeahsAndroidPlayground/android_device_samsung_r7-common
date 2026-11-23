@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2021-2025 The LineageOS Project
+# Copyright (C) 2021-2026 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,18 +21,9 @@ DTB_CFG    := $(COMMON_PATH)/configs/kernel/$(TARGET_SOC).cfg
 
 INSTALLED_DTBIMAGE_TARGET := $(PRODUCT_OUT)/dtb.img
 
-$(INSTALLED_DTBIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(MKDTBOIMG) $(AVBTOOL)
+$(INSTALLED_DTBIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(MKDTBOIMG)
 	$(hide) echo "Building dtb.img"
 	$(hide) $(MKDTBOIMG) cfg_create $@ $(DTB_CFG) -d $(DTB_DIR)
-	$(hide) $(call assert-max-image-size,$@,$(BOARD_DTBIMG_PARTITION_SIZE),raw)
-	$(hide) $(AVBTOOL) add_hash_footer \
-	  --image $@ \
-	  --partition_size $(BOARD_DTBIMG_PARTITION_SIZE) \
-	  --partition_name dtb \
-	  --algorithm $(BOARD_AVB_ALGORITHM) \
-	  --key $(BOARD_AVB_KEY_PATH)
 
 .PHONY: dtbimage
 dtbimage: $(INSTALLED_DTBIMAGE_TARGET)
-
-INSTALLED_RADIOIMAGE_TARGET += $(INSTALLED_DTBIMAGE_TARGET)

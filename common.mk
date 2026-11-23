@@ -14,8 +14,10 @@
 # limitations under the License.
 #
 
+COMMON_PATH := device/samsung/exynos9810-common
+
 # Get non-open-source specific aspects
-$(call inherit-product, vendor/samsung/exynos9820-common/exynos9820-common-vendor.mk)
+$(call inherit-product, vendor/samsung/exynos9810-common/exynos9810-common-vendor.mk)
 
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
@@ -36,6 +38,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     SamsungDAP
 
+# Audio
+PRODUCT_PACKAGES += \
+    audio.primary.universal9810
+
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration_7_0.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
@@ -47,10 +53,8 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
     $(COMMON_PATH)/configs/audio/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml
 
-TARGET_EXCLUDES_AUDIOFX := true
-
 # Bluetooth
-$(call soong_config_set,brcm_libbt,custom_bt_config,//$(COMMON_PATH):vnd_exynos9820.txt)
+$(call soong_config_set,brcm_libbt,custom_bt_config,//$(COMMON_PATH):vnd_exynos9810.txt)
 
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl:64 \
@@ -77,6 +81,9 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.composer.hwc3-service.slsi
+
+PRODUCT_PACKAGES += \
+    gralloc.universal9810
 
 # Doze
 PRODUCT_PACKAGES += \
@@ -115,16 +122,18 @@ PRODUCT_PACKAGES += \
 
 # init
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/init/init.exynos9820.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.exynos9820.rc \
-    $(COMMON_PATH)/configs/init/init.exynos9820.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.exynos9820.usb.rc \
+    $(COMMON_PATH)/configs/init/init.exynos9810.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.exynos9810.rc \
+    $(COMMON_PATH)/configs/init/init.exynos9810.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.exynos9810.usb.rc \
     $(COMMON_PATH)/configs/init/init.samsung.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.samsung.rc \
     $(COMMON_PATH)/configs/init/init.stune.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.stune.rc \
     $(COMMON_PATH)/configs/init/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
 
-ifeq ($(TARGET_HAVE_FOD),true)
+PRODUCT_PACKAGES += \
+    fstab.exynos9810 \
+    fstab.exynos9810.ramdisk
+
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/init/init.udfps.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.udfps.rc
-endif
+    $(COMMON_PATH)/configs/init/init.recovery.exynos9810.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.exynos9810.rc
 
 # Kernel
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
@@ -165,6 +174,9 @@ PRODUCT_PACKAGES += \
     android.hardware.nfc-service.sec \
     com.android.nfc_extras \
     Tag
+
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/configs/nfc/libnfc-sec-vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-sec-vendor.conf
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -247,6 +259,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/power/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+
+# PowerShare
+PRODUCT_PACKAGES += \
+    vendor.lineage.powershare-service.samsung
 
 # Public Libraries
 PRODUCT_COPY_FILES += \

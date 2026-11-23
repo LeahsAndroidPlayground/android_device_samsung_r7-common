@@ -1,4 +1,4 @@
-# Scaling Available Frequencies (Exynos9820)
+# Scaling Available Frequencies (Exynos9810)
 
 See https://www.kernel.org/doc/Documentation/power/pm_qos_interface.txt
 

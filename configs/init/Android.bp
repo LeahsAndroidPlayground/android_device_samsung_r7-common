@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2023 The LineageOS Project
+// Copyright (C) 2023-2026 The LineageOS Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 soong_config_module_type {
     name: "metadata_partition",
     module_type: "genrule_defaults",
-    config_namespace: "fstab_exynos9820",
+    config_namespace: "fstab_exynos9810",
     bool_variables: ["has_metadata_partition"],
     properties: ["cmd"],
 }
@@ -34,22 +34,15 @@ metadata_partition {
 }
 
 genrule {
-    name: "gen_fstab.exynos9820",
+    name: "gen_fstab.exynos9810",
     defaults: ["metadata_partition_defaults"],
-    srcs: ["fstab.exynos9820.in"],
-    out: ["fstab.exynos9820"],
+    srcs: ["fstab.exynos9810.in"],
+    out: ["fstab.exynos9810"],
 }
 
 prebuilt_etc {
-    name: "fstab.exynos9820",
-    src: ":gen_fstab.exynos9820",
-    vendor: true,
-    ramdisk_available: true,
-}
-
-prebuilt_etc {
-    name: "fstab.exynos9825",
-    src: ":gen_fstab.exynos9820",
+    name: "fstab.exynos9810",
+    src: ":gen_fstab.exynos9810",
     vendor: true,
     ramdisk_available: true,
 }

@@ -36,7 +36,7 @@
         "target_path": "hardware/samsung_slsi/nfc"
     },
     {
-        "repository": "android_kernel_samsung_exynos9820",
-        "target_path": "kernel/samsung/exynos9820"
+        "repository": "android_kernel_samsung_r7",
+        "target_path": "kernel/samsung/r7"
     }
 ]
